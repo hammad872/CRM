@@ -21,19 +21,16 @@ const Login = () => {
     });
 
     const data = await response.json();
-    
-    console.log(data.user)
-    if (data.user) {
 
-      // Save other user data to local storage
+    console.log(data.user);
+    if (data.user) {
       localStorage.setItem("userData", JSON.stringify(data.user));
 
-      // Show success message using SweetAlert
       Swal.fire({
-        icon: 'success',
-        title: 'Login Successful',
-        text: 'You have successfully logged in!',
-        confirmButtonText: 'Go to Dashboard',
+        icon: "success",
+        title: "Login Successful",
+        text: "You have successfully logged in!",
+        confirmButtonText: "Go to Dashboard",
       }).then((result) => {
         if (result.isConfirmed) {
           // Redirect to dashboard
@@ -41,11 +38,10 @@ const Login = () => {
         }
       });
     } else {
-      // Use SweetAlert for the alert
       Swal.fire({
-        icon: 'error',
-        title: 'Oops...',
-        text: 'Invalid email or password!',
+        icon: "error",
+        title: "Oops...",
+        text: "Invalid email or password!",
       });
     }
   }

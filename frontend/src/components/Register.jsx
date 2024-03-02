@@ -9,8 +9,7 @@ const Register = () => {
   const [phone, setPhone] = useState("");
   const [role, setRole] = useState("");
   const [status] = useState(false);
-  const navigate = useNavigate(); // Initialize the navigate function
-
+  const navigate = useNavigate();
   async function registeruser(event) {
     event.preventDefault();
     const response = await fetch("http://localhost:3001/register", {
@@ -32,14 +31,13 @@ const Register = () => {
 
     console.log(data);
 
-    // If registration is successful, navigate to the login page
     if (data.status === "ok") {
       Swal.fire({
         icon: "success",
         title: "Registration Successful!",
         text: "Please login to continue.",
       }).then(() => {
-        navigate("/"); // Navigate to the login page
+        navigate("/");
       });
     } else {
       Swal.fire({

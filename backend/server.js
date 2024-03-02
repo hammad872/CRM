@@ -15,45 +15,57 @@ app.use(cors());
 app.use(express.json());
 
 app.post("/register", async (req, res) => {
-    try {
-      await UserSchema.create({
-        name: req.body.name,
-        email: req.body.email,
-        password: req.body.password,
-        role: req.body.role,
-        status: req.body.status,
-        phone: req.body.phone,
-      });
-      res.json({ status: "ok" }); // Always return success status
-    } catch (err) {
-      console.error(err);
-      res.status(500).json({ status: "error", error: "Something went wrong" });
-    }
-  });
+  try {
+    await UserSchema.create({
+      name: req.body.name,
+      email: req.body.email,
+      password: req.body.password,
+      role: req.body.role,
+      status: req.body.status,
+      phone: req.body.phone,
+    });
+    res.json({ status: "ok" });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ status: "error", error: "Something went wrong" });
+  }
+});
+
+app.get("/users", async (req, res) => {
+  try {
+    const users = await UserSchema.find();
+    const usersWithToken = users.map((user) => {
+      const token = jwt.sign({ password: user.password }, "secret123");
+      return { ...user.toObject(), password: token };
+    });
+    res.json({ status: "success", users: usersWithToken });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ status: "error", error: "Something went wrong" });
+  }
+});
+
 app.post("/login", async (req, res) => {
-    const { email, password } = req.body;
-  
-    // Find user by email
-    const user = await UserSchema.findOne({ email });
-  
-    if (!user) {
-      return res.json({ status: "error", message: "User not found" });
-    }
-  
-    // Verify password
-    const isPasswordValid = (password === user.password);
-  
-    if (!isPasswordValid) {
-      return res.json({ status: "error", message: "Invalid password" });
-    }
-  
-    // Generate JWT token for password
-    const token = jwt.sign({ password }, "secret123");
-  
-    // Return user data along with password token
-    return res.json({ status: "success", user: { ...user.toObject(), password: token } });
+  const { email, password } = req.body;
+  const user = await UserSchema.findOne({ email });
+
+  if (!user) {
+    return res.json({ status: "error", message: "User not found" });
+  }
+
+  const isPasswordValid = password === user.password;
+
+  if (!isPasswordValid) {
+    return res.json({ status: "error", message: "Invalid password" });
+  }
+
+  const token = jwt.sign({ password }, "secret123");
+
+  return res.json({
+    status: "success",
+    user: { ...user.toObject(), password: token },
   });
-  
+});
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
