@@ -21,7 +21,6 @@ app.post("/register", async (req, res) => {
       email: req.body.email,
       password: req.body.password,
       role: req.body.role,
-      status: req.body.status,
       phone: req.body.phone,
     });
     res.json({ status: "ok" });

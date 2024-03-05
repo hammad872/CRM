@@ -8,7 +8,6 @@ const Register = () => {
   const [password, setPassword] = useState("");
   const [phone, setPhone] = useState("");
   const [role, setRole] = useState("");
-  const [status] = useState(false);
   const navigate = useNavigate();
   async function registeruser(event) {
     event.preventDefault();
@@ -23,7 +22,6 @@ const Register = () => {
         password,
         phone,
         role,
-        status: "false",
       }),
     });
 
@@ -118,29 +116,6 @@ const Register = () => {
                   name="number"
                   type="number"
                   autoComplete="number"
-                  required
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                />
-              </div>
-            </div>
-
-            <div>
-              <div className="flex items-center justify-between">
-                <label
-                  htmlFor="status"
-                  className="block text-sm font-medium leading-6 text-gray-900"
-                  style={{ display: "none" }}
-                >
-                  status
-                </label>
-              </div>
-              <div className="mt-2">
-                <input
-                  value={status}
-                  id="status"
-                  name="status"
-                  type="hidden"
-                  autoComplete="current-status"
                   required
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
