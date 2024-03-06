@@ -1,18 +1,14 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 import Header from "./Header";
+import Sidebar from "./Sidebar";
 
 const Dashboard = () => {
-    const navigate = useNavigate();
-    const handleClick = () => {
-        // Remove the item from localStorage
-        localStorage.removeItem("userData");
-        navigate("/");
-      };
-    
-      return (
-        <Header />
-              );
-    };
+  return (
+    <>
+      <Header />
+      <Sidebar />
+    </>
+  );
+};
 
 export default Dashboard;
