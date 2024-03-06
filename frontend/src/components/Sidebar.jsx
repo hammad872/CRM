@@ -1,5 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { Button } from "@material-tailwind/react";
+
 
 const Sidebar = () => {
   const [tooltips, setTooltips] = React.useState({
@@ -22,6 +24,11 @@ const Sidebar = () => {
     navigate("/sales");
   };
 
+  const logout = () => {
+    localStorage.clear();
+    navigate("/");
+  };
+
   return (
     <nav className="bg-gray-900 w-20 h-screen z-10 fixed top-0  justify-between flex flex-col ">
       <div className="mt-10 mb-10">
@@ -40,7 +47,7 @@ const Sidebar = () => {
                 onMouseEnter={() => toggleTooltip("button1")}
                 onMouseLeave={() => toggleTooltip("button1")}
               >
-                <button className="p-3">
+                <Button className="p-3">
                   <span>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -57,7 +64,7 @@ const Sidebar = () => {
                       />
                     </svg>
                   </span>
-                </button>
+                </Button>
                 {tooltips.button1 && (
                   <span className="tooltiptext">Dashboard</span>
                 )}
@@ -69,7 +76,7 @@ const Sidebar = () => {
                 onMouseEnter={() => toggleTooltip("button2")}
                 onMouseLeave={() => toggleTooltip("button2")}
               >
-                <button className="p-3">
+                <Button className="p-3">
                   <span>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -86,9 +93,9 @@ const Sidebar = () => {
                       />
                     </svg>
                   </span>
-                </button>
+                </Button>
                 {tooltips.button2 && (
-                  <span className="tooltiptext">Button 1 Tooltip</span>
+                  <span className="tooltiptext">Leads</span>
                 )}
               </div>
             </li>
@@ -98,7 +105,7 @@ const Sidebar = () => {
                 onMouseEnter={() => toggleTooltip("button3")}
                 onMouseLeave={() => toggleTooltip("button3")}
               >
-                <button className="p-3" onClick={sales}>
+                <Button className="p-3" onClick={sales}>
                   <span>
                     <svg
                       className="fill-current h-5 w-5 text-gray-300 mx-auto hover:text-green-500 "
@@ -114,7 +121,7 @@ const Sidebar = () => {
                       />
                     </svg>
                   </span>
-                </button>
+                </Button>
                 {tooltips.button3 && (
                   <span className="tooltiptext">Button 3 Tooltip</span>
                 )}
@@ -126,7 +133,7 @@ const Sidebar = () => {
                 onMouseEnter={() => toggleTooltip("button4")}
                 onMouseLeave={() => toggleTooltip("button4")}
               >
-                <button className="p-3">
+                <Button className="p-3">
                   <span>
                     <svg
                       className="fill-current h-5 w-5 text-gray-300 mx-auto hover:text-green-500 "
@@ -142,7 +149,7 @@ const Sidebar = () => {
                       />
                     </svg>
                   </span>
-                </button>
+                </Button>
                 {tooltips.button4 && (
                   <span className="tooltiptext">Button 1 Tooltip</span>
                 )}
@@ -151,8 +158,8 @@ const Sidebar = () => {
           </ul>
         </div>
       </div>
-      <div className="mb-4">
-        <a href="#">
+      <div className="mb-6 flex justify-center">
+      <Button className="p-3" onClick={logout}>
           <span>
             <svg
               className="fill-current hx-5 w-5 text-gray-300 mx-auto hover:text-red-500"
@@ -170,7 +177,7 @@ const Sidebar = () => {
               />
             </svg>
           </span>
-        </a>
+          </Button>
       </div>
     </nav>
   );
