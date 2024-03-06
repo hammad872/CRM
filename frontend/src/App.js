@@ -10,27 +10,36 @@ import Sidebar from "./components/Sidebar";
 function App() {
   return (
     <BrowserRouter>
-    {/* <Header /> */}
+      {/* <Header /> */}
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/dashboard" element={<PrivateRoute component={Dashboard} />} />
+        <Route
+          path="/dashboard"
+          element={<PrivateRoute component={Dashboard} />}
+        />
         <Route path="/sales" element={<PrivateRoute component={Sales} />} />
       </Routes>
     </BrowserRouter>
   );
 }
 
-
 function PrivateRoute({ component: Component, ...rest }) {
-  const token = localStorage.getItem('userData');
+  const token = localStorage.getItem("userData");
 
   return token ? (
     <>
-    <Sidebar />
-    <Component {...rest} />
+        <Header />
+      <div className="container">
+        <div className="sidebar">
+          <Sidebar />
+        </div>
+        <div className="main-content">
+          <Component {...rest} />
+        </div>
+      </div>
     </>
-    ) : (
+  ) : (
     <Navigate to="/" replace />
   );
 }

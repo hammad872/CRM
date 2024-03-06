@@ -33,7 +33,7 @@ const Sidebar = () => {
       <div className="mt-10 mb-10">
         <NavLink to={"/dashboard"}>
           <img
-            src="https://randomuser.me/api/portraits/women/76.jpg"
+            src="https://res-console.cloudinary.com/dus0ln30w/media_explorer_thumbnails/a3fc4eab2fea985b5949566ba87f7d7e/detailed"
             className="rounded-full w-10 h-10 mb-3 mx-auto"
             alt=""
           />
