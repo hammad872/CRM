@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { Button } from "@material-tailwind/react";
 
 
@@ -20,24 +20,24 @@ const Sidebar = () => {
 
   const navigate = useNavigate();
 
-  const sales = () => {
-    navigate("/sales");
-  };
+
 
   const logout = () => {
     localStorage.clear();
     navigate("/");
   };
 
+
   return (
     <nav className="bg-gray-900 w-20 h-screen z-10 fixed top-0  justify-between flex flex-col ">
       <div className="mt-10 mb-10">
-        <a href="#">
+        <NavLink to={"/dashboard"}>
           <img
             src="https://randomuser.me/api/portraits/women/76.jpg"
             className="rounded-full w-10 h-10 mb-3 mx-auto"
+            alt=""
           />
-        </a>
+        </NavLink>
 
         <div className="mt-10">
           <ul>
@@ -77,6 +77,7 @@ const Sidebar = () => {
                 onMouseLeave={() => toggleTooltip("button2")}
               >
                 <Button className="p-3">
+                  <NavLink to={"/sales"}>
                   <span>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -93,9 +94,10 @@ const Sidebar = () => {
                       />
                     </svg>
                   </span>
+                  </NavLink>
                 </Button>
                 {tooltips.button2 && (
-                  <span className="tooltiptext">Leads</span>
+                  <span className="tooltiptext">Button 1 Tooltip</span>
                 )}
               </div>
             </li>
@@ -105,7 +107,7 @@ const Sidebar = () => {
                 onMouseEnter={() => toggleTooltip("button3")}
                 onMouseLeave={() => toggleTooltip("button3")}
               >
-                <Button className="p-3" onClick={sales}>
+                <Button className="p-3">
                   <span>
                     <svg
                       className="fill-current h-5 w-5 text-gray-300 mx-auto hover:text-green-500 "

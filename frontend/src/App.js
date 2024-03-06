@@ -5,6 +5,7 @@ import Register from "./components/Register";
 import Dashboard from "./components/Dashboard";
 import Sales from "./components/Sales";
 import Header from "./components/Header";
+import Sidebar from "./components/Sidebar";
 
 function App() {
   return (
@@ -25,8 +26,11 @@ function PrivateRoute({ component: Component, ...rest }) {
   const token = localStorage.getItem('userData');
 
   return token ? (
+    <>
+    <Sidebar />
     <Component {...rest} />
-  ) : (
+    </>
+    ) : (
     <Navigate to="/" replace />
   );
 }
