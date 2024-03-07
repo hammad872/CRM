@@ -1,20 +1,40 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
 
 const Header = () => {
-  // State to manage dropdown visibility
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
-  // Function to handle profile dropdown
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [userName, setUserName] = useState(""); 
+
+
   const handleProfileDropdown = () => {
-    // Toggle the dropdown visibility
+
     setIsDropdownOpen(!isDropdownOpen);
   };
+
+
+
+  useEffect(() => {
+    const userData = JSON.parse(localStorage.getItem("userData"));
+    if (userData) {
+      setUserName(userData.name);
+    }
+  }, []);
+
+  const navigate = useNavigate();
+
+
+
+  const logout = () => {
+    localStorage.clear();
+    navigate("/");
+  };
+
 
   return (
     <div className="flex items-center h-16 px-4 bg-white shadow grid grid-cols-1 gap-4 lg:grid-cols-5 lg:gap-8">
       <div className="h-16 rounded-lg"></div>
-      <div className="h-16 rounded-lg flex justify-start">
-      </div>
+      <div className="h-16 rounded-lg flex justify-start"></div>
       <div className="h-16 rounded-lg"></div>
       <div className="h-16 rounded-lg flex justify-end">
         <button className="flex items-center">
@@ -44,8 +64,7 @@ const Header = () => {
               d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
             />
           </svg>
-
-          <span className="ml-2">John Doe</span>
+          <span className="ml-2">{userName}</span> 
         </button>
         <div
           className={`absolute top-10 mt-2 w-48 bg-white border border-gray-200 divide-y divide-gray-100 rounded-md shadow-lg z-10 ${
@@ -53,24 +72,22 @@ const Header = () => {
           }`}
         >
           <div className="py-1">
-            <a
-              href="#"
+            <NavLink
               className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
             >
               Profile
-            </a>
-            <a
-              href="#"
+            </NavLink>
+            <NavLink
               className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
             >
               Settings
-            </a>
-            <a
-              href="#"
+            </NavLink>
+            <button
+              onClick={logout}
               className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
             >
               Sign out
-            </a>
+            </button>
           </div>
         </div>
       </div>

@@ -2,7 +2,6 @@ import React from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { Button } from "@material-tailwind/react";
 
-
 const Sidebar = () => {
   const [tooltips, setTooltips] = React.useState({
     button1: false,
@@ -20,20 +19,17 @@ const Sidebar = () => {
 
   const navigate = useNavigate();
 
-
-
   const logout = () => {
     localStorage.clear();
     navigate("/");
   };
-
 
   return (
     <nav className="bg-gray-900 w-20 h-screen z-10 fixed top-0  justify-between flex flex-col ">
       <div className="mt-10 mb-10">
         <NavLink to={"/dashboard"}>
           <img
-            src="https://res-console.cloudinary.com/dus0ln30w/media_explorer_thumbnails/a3fc4eab2fea985b5949566ba87f7d7e/detailed"
+            src="https://res.cloudinary.com/dus0ln30w/image/upload/s--PcLuq8E3--/f_auto,q_auto/semrojtefabycyq4hths"
             className="rounded-full w-10 h-10 mb-3 mx-auto"
             alt=""
           />
@@ -78,22 +74,22 @@ const Sidebar = () => {
               >
                 <Button className="p-3">
                   <NavLink to={"/sales"}>
-                  <span>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      strokeWidth={1.5}
-                      stroke="currentColor"
-                      className="w-6 h-6 text-gray-300 mx-auto hover:text-green-500"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M12 6v12m-3-2.818.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
-                      />
-                    </svg>
-                  </span>
+                    <span>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth={1.5}
+                        stroke="currentColor"
+                        className="w-6 h-6 text-gray-300 mx-auto hover:text-green-500"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M12 6v12m-3-2.818.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+                        />
+                      </svg>
+                    </span>
                   </NavLink>
                 </Button>
                 {tooltips.button2 && (
@@ -161,7 +157,7 @@ const Sidebar = () => {
         </div>
       </div>
       <div className="mb-6 flex justify-center">
-      <Button className="p-3" onClick={logout}>
+        <Button className="p-3" onClick={logout}>
           <span>
             <svg
               className="fill-current hx-5 w-5 text-gray-300 mx-auto hover:text-red-500"
@@ -179,7 +175,7 @@ const Sidebar = () => {
               />
             </svg>
           </span>
-          </Button>
+        </Button>
       </div>
     </nav>
   );
