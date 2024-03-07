@@ -72,20 +72,6 @@
   opacity: 1;
 }
 
-/* styles.css */
-.container {
-  display: flex;
-}
-
-.sidebar {
-  width: 100px; /* Adjust the width of the sidebar as needed */
-  color: white; /* Example text color */
-}
-
-.main-content {
-  flex: 1; /* Take up remaining space */
-  padding: 10px; /* Example padding */
-}
 
 /*making bell shape with one div */
 .bell {

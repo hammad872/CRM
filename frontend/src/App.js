@@ -29,15 +29,10 @@ function PrivateRoute({ component: Component, ...rest }) {
 
   return token ? (
     <>
-        <Header />
-      <div className="container">
-        <div className="sidebar">
-          <Sidebar />
-        </div>
-        <div className="main-content">
-          <Component {...rest} />
-        </div>
-      </div>
+      <Header />
+
+      <Sidebar />
+      <Component {...rest} />
     </>
   ) : (
     <Navigate to="/" replace />
